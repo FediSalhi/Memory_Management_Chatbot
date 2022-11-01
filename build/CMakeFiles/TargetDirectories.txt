@@ -1,0 +1,3 @@
+/home/fedi/Desktop/Projects/Memory_Management_Chatbot/build/CMakeFiles/rebuild_cache.dir
+/home/fedi/Desktop/Projects/Memory_Management_Chatbot/build/CMakeFiles/edit_cache.dir
+/home/fedi/Desktop/Projects/Memory_Management_Chatbot/build/CMakeFiles/membot.dir
