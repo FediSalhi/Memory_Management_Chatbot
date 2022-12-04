@@ -11,8 +11,10 @@ const int width = 414;
 const int height = 736;
 
 // wxWidgets APP
+// excluding the main if we are running the tests
+#ifndef TEST
 IMPLEMENT_APP(ChatBotApp);
-
+#endif
 std::string dataPath = "../";
 std::string imgBasePath = dataPath + "images/";
 
@@ -113,12 +115,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
     // allow for PNG images to be handled
     wxInitAllImageHandlers();
-
-    //// STUDENT CODE
-    ////
-
-    // create chat logic instance
-    _chatLogic = new ChatLogic(); 
+    _chatLogic = std::make_unique<ChatLogic>();
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -126,19 +123,11 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     // load answer graph from file
     _chatLogic->LoadAnswerGraphFromFile(dataPath + "src/answergraph.txt");
 
-    ////
-    //// EOF STUDENT CODE
 }
 
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
-    //// STUDENT CODE
-    ////
 
-    delete _chatLogic;
-
-    ////
-    //// EOF STUDENT CODE
 }
 
 void ChatBotPanelDialog::AddDialogItem(wxString text, bool isFromUser)

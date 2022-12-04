@@ -13,15 +13,10 @@ class GraphNode;
 class ChatLogic
 {
 private:
-    //// STUDENT CODE
-    ////
 
     // data handles (owned)
-    std::vector<GraphNode *> _nodes;
-    std::vector<GraphEdge *> _edges;
-
-    ////
-    //// EOF STUDENT CODE
+    std::vector<std::unique_ptr<GraphNode>> _nodes{};
+    std::vector<GraphEdge*> _edges{};
 
     // data handles (not owned)
     GraphNode *_currentNode;
@@ -31,9 +26,11 @@ private:
     // proprietary type definitions
     typedef std::vector<std::pair<std::string, std::string>> tokenlist;
 
+#ifndef TEST    
     // proprietary functions
     template <typename T>
     void AddAllTokensToElement(std::string tokenID, tokenlist &tokens, T &element);
+#endif
 
 public:
     // constructor / destructor
@@ -49,6 +46,12 @@ public:
     void SendMessageToChatbot(std::string message);
     void SendMessageToUser(std::string message);
     wxBitmap *GetImageFromChatbot();
+
+#ifdef TEST    
+    // proprietary functions
+    template <typename T>
+    void AddAllTokensToElement(std::string tokenID, tokenlist &tokens, T &element);
+#endif
 };
 
 #endif /* CHATLOGIC_H_ */
